@@ -6,7 +6,7 @@
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/25 01:43:20 by thou              #+#    #+#             */
-/*   Updated: 2017/12/25 02:54:14 by thou             ###   ########.fr       */
+/*   Updated: 2017/12/25 04:00:51 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,14 @@
 
 int main()
 {
-	ft_putstr("19 34\n");
+	char	*line;
+	int		fd;
+
+	fd = open("test", O_RDONLY);
+	ft_putstr("18 32\n");
+	while ((get_next_line(0, &line)) > 0)
+	{
+		ft_putstr_fd(line, fd);
+	}
+	close(fd);
 }
