@@ -1,7 +1,7 @@
 {
   "language": "c",
   "script": [
-    "travis_wait 30 sh filler_test.sh"
+    "sh filler_test.sh"
   ],
   "os": "osx",
   "env": "ARCH=x86_64",
