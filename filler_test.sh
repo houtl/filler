@@ -1,6 +1,6 @@
 rm -rf /tmp/filler_tester
 rm -rf /tmp/filler_resources
-git clone https://github.com/darklink41/filler_tester.git /tmp/filler_tester
+git clone https://github.com/houtl/filler_tester.git /tmp/filler_tester
 make -C /tmp/filler_tester
 git clone https://github.com/houtl/filler.git /tmp/filler_resources
 cp -R /tmp/filler_resources/resources .
