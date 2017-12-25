@@ -1,0 +1,9 @@
+{
+  "language": "c",
+  "script": [
+    "sh filler_test.sh"
+  ],
+  "os": "osx",
+  "env": "ARCH=x86_64",
+  "compiler": "clang"
+}
