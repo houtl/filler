@@ -6,11 +6,13 @@
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/25 01:43:20 by thou              #+#    #+#             */
-/*   Updated: 2017/12/25 21:53:46 by thou             ###   ########.fr       */
+/*   Updated: 2017/12/29 17:56:25 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
+
+//int		fd = 0;
 
 int		ft_check(t_env *e)
 {
@@ -27,8 +29,8 @@ int		ft_check(t_env *e)
 		{
 			if (e->piece[j][i] == '*')
 			{
-				if (e->aws[0] + j < 0 || e->aws[0] + j > e->y ||
-						e->aws[1] + i < 0 || e->aws[1] + i > e->x)
+				if (e->aws[0] + j < 0 || e->aws[0] + j >= e->y ||
+						e->aws[1] + i < 0 || e->aws[1] + i >= e->x)
 					return (0);
 				if (e->tab[e->aws[0] + j][e->aws[1] + i] == e->p2)
 					return (0);
@@ -58,6 +60,8 @@ int		ft_poser(t_env *e, int x, int y)
 				if (ft_check(e) == 1)
 				{
 					ft_printf("%d %d\n", e->aws[0], e->aws[1]);
+					free_piece(e);
+					free_tab(e);
 					return (1);
 				}
 			}
@@ -85,7 +89,9 @@ void	solve(t_env *e)
 		}
 	}
 	ft_printf("0 0\n");
+	e->flag = 4;
 }
+
 
 int main()
 {
@@ -94,6 +100,7 @@ int main()
 
 	e.flag = 0;
 	e.aws = (int*)malloc(sizeof(int) * 2);
+//	fd = open("/dev/ttys001", O_WRONLY);
 	while (get_next_line(0, &line))
 	{
 		if (ft_strncmp("$$$ exec p", line, 10) == 0)
@@ -104,6 +111,8 @@ int main()
 		ft_strncmp("Piece", line, 5) == 0 ? get_piecesize(&e, &line) : 0;
 		e.flag == 2 ? get_piece(&e, &line) : 0;
 		e.flag == 3 ? solve(&e) : 0;
+		if (e.flag == 4)
+			return (0);
 	}
 	return (0);
 }

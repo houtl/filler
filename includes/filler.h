@@ -6,7 +6,7 @@
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/25 01:44:12 by thou              #+#    #+#             */
-/*   Updated: 2017/12/25 21:36:25 by thou             ###   ########.fr       */
+/*   Updated: 2017/12/26 16:37:04 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ typedef struct		s_env
 	int				*aws;
 }					t_env;
 
+void	free_tab(t_env *e);
+void	free_piece(t_env *e);
 void	get_plateau(t_env *e, char **str);
 void	get_player(t_env *e, char **str);
 void	get_piecesize(t_env *e, char **str);

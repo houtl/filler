@@ -1,27 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/16 16:36:59 by thou              #+#    #+#             */
-/*   Updated: 2017/12/29 16:35:21 by thou             ###   ########.fr       */
+/*   Created: 2017/12/26 16:26:31 by thou              #+#    #+#             */
+/*   Updated: 2017/12/26 16:37:27 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "filler.h"
 
-# define BUFF_SIZE 2
+void	free_tab(t_env *e)
+{
+	int		j;
 
-# include "libft.h"
-# include <stdlib.h>
-# include <unistd.h>
+	j = -1;
+	while (++j < e->y)
+		free(e->tab[j]);
+	free(e->tab);
+}
 
-# define SAFEMALLOC(x) if (!x) return (-1);
-# define FIN(x) if (!x) return (0);
+void	free_piece(t_env *e)
+{
+	int		j;
 
-int					get_next_line(int const fd, char **line);
-
-#endif
+	j = -1;
+	while (++j < e->yp)
+		free(e->piece[j]);
+	free(e->piece);
+}

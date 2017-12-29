@@ -6,11 +6,13 @@
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/25 06:26:11 by thou              #+#    #+#             */
-/*   Updated: 2017/12/25 21:27:19 by thou             ###   ########.fr       */
+/*   Updated: 2017/12/29 17:55:52 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
+#include <curses.h>
+extern int	fd;
 
 void	get_piece(t_env *e, char **str)
 {
@@ -30,13 +32,18 @@ void	get_piece(t_env *e, char **str)
 void	get_tab(t_env *e, char **str)
 {
 	int		y;
+	int		x;
 
 	free(*str);
 	y = -1;
 	while (++y < e->y)
 	{
 		get_next_line(0, str);
-		e->tab[y] = ft_strdup(*str + 4);
+		e->tab[y] = (char*)malloc(sizeof(char) * (e->x + 1));
+		x = -1;
+		while (++x < e->x)
+			e->tab[y][x] = str[0][x + 4];
+		e->tab[y][x] = 0;
 		free(*str);
 	}
 	get_next_line(0, str);
