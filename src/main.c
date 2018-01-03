@@ -6,7 +6,7 @@
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/25 01:43:20 by thou              #+#    #+#             */
-/*   Updated: 2018/01/03 12:53:40 by thou             ###   ########.fr       */
+/*   Updated: 2018/01/03 13:13:30 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int		ft_poser(t_env *e, int x, int y)
 					e->tmp = e->tab;
 					ft_rempli(e);
 					maxcol = ft_countcol(e);
-					if (maxcol == 0)
+					if (maxcol <= 0 && e->maxcol <= 0)
 					{
 						maxdis = ft_countdis(e);
 
