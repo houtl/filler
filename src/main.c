@@ -6,7 +6,7 @@
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/25 01:43:20 by thou              #+#    #+#             */
-/*   Updated: 2018/01/03 13:58:05 by thou             ###   ########.fr       */
+/*   Updated: 2018/01/03 18:03:53 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,25 +64,19 @@ int		ft_poser(t_env *e, int x, int y)
 					e->tmp = e->tab;
 					ft_rempli(e);
 					maxcol = ft_countcol(e);
-					if (maxcol <= 0 && e->maxcol <= 0)
+					maxdis = ft_countdis(e);
+					if (maxdis > e->maxdis)
 					{
-						maxdis = ft_countdis(e);
-
-						if (maxdis >= e->maxdis)
-						{
-							e->maxdis = maxdis;
-							e->as[0] = y - j;
-							e->as[1] = x - i;
-						}
+						e->flag1 = 1;
+						e->maxdis = maxdis;
+						e->as[0] = y - j;
+						e->as[1] = x - i;
 					}
-					else
+					else if (maxcol >= e->maxcol && e->flag1 != 1)
 					{
-						if (maxcol >= e->maxcol)
-						{
-							e->maxcol = maxcol;
-							e->as[0] = y - j;
-							e->as[1] = x - i;
-						}
+						e->maxcol = maxcol;
+						e->as[0] = y - j;
+						e->as[1] = x - i;
 					}
 					ft_reset(e, x, y);
 				}
@@ -97,8 +91,9 @@ void	solve(t_env *e)
 	int		y;
 	int		x;
 
-	e->maxcol = -1;
-	e->maxdis = -1;
+	e->maxcol = ft_countcol(e);
+	e->maxdis = ft_countdis(e);
+	e->flag1 = 0;
 	y = -1;
 	while (++y < e->y)
 	{

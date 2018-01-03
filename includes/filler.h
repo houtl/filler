@@ -6,7 +6,7 @@
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/25 01:44:12 by thou              #+#    #+#             */
-/*   Updated: 2018/01/03 13:45:38 by thou             ###   ########.fr       */
+/*   Updated: 2018/01/03 17:07:54 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct		s_env
 	char			**tmp;
 	char			**piece;
 	int				flag;
+	int				flag1;
 	int				*aws;
 	int				as[2];
 	int				maxcol;
