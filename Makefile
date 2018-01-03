@@ -6,7 +6,7 @@
 #    By: thou <marvin@42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/25 01:41:20 by thou              #+#    #+#              #
-#    Updated: 2017/12/26 16:36:14 by thou             ###   ########.fr        #
+#    Updated: 2017/12/30 16:45:31 by thou             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ NAME	=	thou.filler
 FLAG	=	-Wall -Wextra -Werror
 INC		=	-I includes -I libft/includes
 SRC_DIR	=	src/
-SRC_BASE=	main.c get.c free.c
+SRC_BASE=	main.c get.c free.c count.c
 SRC		=	$(addprefix $(SRC_DIR), $(SRC_BASE))
 OBJ_DIR	=	obj/
 OBJ		=	$(addprefix $(OBJ_DIR), $(SRC_BASE:.c=.o))

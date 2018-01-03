@@ -6,13 +6,13 @@
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/25 01:43:20 by thou              #+#    #+#             */
-/*   Updated: 2017/12/29 17:56:25 by thou             ###   ########.fr       */
+/*   Updated: 2018/01/03 12:12:06 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-//int		fd = 0;
+int		fd = 0;
 
 int		ft_check(t_env *e)
 {
@@ -46,6 +46,8 @@ int		ft_poser(t_env *e, int x, int y)
 {
 	int		j;
 	int		i;
+	int		maxcol;
+	int		maxdis;
 
 	j = -1;
 	while (++j < e->yp)
@@ -57,12 +59,39 @@ int		ft_poser(t_env *e, int x, int y)
 			{
 				e->aws[0] = y - j;
 				e->aws[1] = x - i;
+		dprintf(fd, "%d %d %d %d\n", y, x, j, i);
+		dprintf(fd, "%d %d\n", e->aws[0], e->aws[1]);
 				if (ft_check(e) == 1)
 				{
-					ft_printf("%d %d\n", e->aws[0], e->aws[1]);
-					free_piece(e);
-					free_tab(e);
-					return (1);
+		dprintf(fd, "%d %d\n", e->aws[0], e->aws[1]);
+					e->tmp = e->tab;
+					ft_rempli(e);
+					maxcol = ft_countcol(e);
+					if (maxcol == 0)
+					{
+		dprintf(fd, "bbbbbbbbbbbb\n");
+						maxdis = ft_countdis(e);
+
+		dprintf(fd, "%d\n", e->maxdis);
+						if (maxdis >= e->maxdis)
+						{
+							e->maxdis = maxdis;
+							e->as[0] = y - j;
+							e->as[1] = x - i;
+		dprintf(fd, "%d %d\n", e->as[0], e->as[1]);
+		dprintf(fd, "%d %d\n", j, i);
+						}
+					}
+					else
+					{
+						if (maxcol >= e->maxcol)
+						{
+							e->maxcol = maxcol;
+							e->as[0] = y - j;
+							e->as[1] = x - i;
+						}
+					}
+					ft_reset(e, x, y);
 				}
 			}
 		}
@@ -75,23 +104,19 @@ void	solve(t_env *e)
 	int		y;
 	int		x;
 
+	e->maxcol = -1;
+	e->maxdis = -1;
 	y = -1;
 	while (++y < e->y)
 	{
 		x = -1;
 		while (++x < e->x)
-		{
 			if (e->tab[y][x] == e->p1)
-			{
-				if (ft_poser(e, x, y) == 1)
-					return ;
-			}
-		}
-	}
-	ft_printf("0 0\n");
-	e->flag = 4;
+			{		dprintf(fd, "aaaaaaaaaaaa\n");
+				ft_poser(e, x, y);
+			}}
+	ft_printf("%d %d\n", e->as[0], e->as[1]);
 }
-
 
 int main()
 {
@@ -100,7 +125,7 @@ int main()
 
 	e.flag = 0;
 	e.aws = (int*)malloc(sizeof(int) * 2);
-//	fd = open("/dev/ttys001", O_WRONLY);
+	fd = open("/dev/ttys001", O_WRONLY);
 	while (get_next_line(0, &line))
 	{
 		if (ft_strncmp("$$$ exec p", line, 10) == 0)
@@ -111,8 +136,6 @@ int main()
 		ft_strncmp("Piece", line, 5) == 0 ? get_piecesize(&e, &line) : 0;
 		e.flag == 2 ? get_piece(&e, &line) : 0;
 		e.flag == 3 ? solve(&e) : 0;
-		if (e.flag == 4)
-			return (0);
 	}
 	return (0);
 }
