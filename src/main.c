@@ -6,7 +6,7 @@
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/25 01:43:20 by thou              #+#    #+#             */
-/*   Updated: 2018/01/03 13:13:30 by thou             ###   ########.fr       */
+/*   Updated: 2018/01/03 13:58:05 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,7 @@ int main()
 	t_env	e;
 
 	e.flag = 0;
+	e.x0 = -1;
 	e.aws = (int*)malloc(sizeof(int) * 2);
 	fd = open("/dev/ttys001", O_WRONLY);
 	while (get_next_line(0, &line))

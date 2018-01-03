@@ -6,7 +6,7 @@
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/25 01:44:12 by thou              #+#    #+#             */
-/*   Updated: 2018/01/03 12:13:00 by thou             ###   ########.fr       */
+/*   Updated: 2018/01/03 13:45:38 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,7 @@ typedef struct		s_env
 	int				y;
 	int				xp;
 	int				yp;
-	int				xo;
-	int				yo;
+	int				x0;
 	char			**tab;
 	char			**tmp;
 	char			**piece;

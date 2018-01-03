@@ -6,7 +6,7 @@
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/25 06:26:11 by thou              #+#    #+#             */
-/*   Updated: 2018/01/03 12:55:38 by thou             ###   ########.fr       */
+/*   Updated: 2018/01/03 14:00:07 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,11 @@ void	get_tab(t_env *e, char **str)
 		e->tab[y] = (char*)malloc(sizeof(char) * (e->x + 1));
 		x = -1;
 		while (++x < e->x)
+		{
 			e->tab[y][x] = str[0][x + 4];
+			if (e->tab[y][x] == e->p1)
+				e->x0 = (e->x0 == -1 ? x : e->x0);
+		}
 		e->tab[y][x] = 0;
 		free(*str);
 	}
