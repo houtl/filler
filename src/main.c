@@ -6,7 +6,7 @@
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/25 01:43:20 by thou              #+#    #+#             */
-/*   Updated: 2018/01/03 12:12:06 by thou             ###   ########.fr       */
+/*   Updated: 2018/01/03 12:53:40 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,27 +59,20 @@ int		ft_poser(t_env *e, int x, int y)
 			{
 				e->aws[0] = y - j;
 				e->aws[1] = x - i;
-		dprintf(fd, "%d %d %d %d\n", y, x, j, i);
-		dprintf(fd, "%d %d\n", e->aws[0], e->aws[1]);
 				if (ft_check(e) == 1)
 				{
-		dprintf(fd, "%d %d\n", e->aws[0], e->aws[1]);
 					e->tmp = e->tab;
 					ft_rempli(e);
 					maxcol = ft_countcol(e);
 					if (maxcol == 0)
 					{
-		dprintf(fd, "bbbbbbbbbbbb\n");
 						maxdis = ft_countdis(e);
 
-		dprintf(fd, "%d\n", e->maxdis);
 						if (maxdis >= e->maxdis)
 						{
 							e->maxdis = maxdis;
 							e->as[0] = y - j;
 							e->as[1] = x - i;
-		dprintf(fd, "%d %d\n", e->as[0], e->as[1]);
-		dprintf(fd, "%d %d\n", j, i);
 						}
 					}
 					else
@@ -112,9 +105,8 @@ void	solve(t_env *e)
 		x = -1;
 		while (++x < e->x)
 			if (e->tab[y][x] == e->p1)
-			{		dprintf(fd, "aaaaaaaaaaaa\n");
 				ft_poser(e, x, y);
-			}}
+	}
 	ft_printf("%d %d\n", e->as[0], e->as[1]);
 }
 

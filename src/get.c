@@ -6,7 +6,7 @@
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/25 06:26:11 by thou              #+#    #+#             */
-/*   Updated: 2017/12/30 15:28:08 by thou             ###   ########.fr       */
+/*   Updated: 2018/01/03 12:55:38 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ void	get_tab(t_env *e, char **str)
 	while (++y < e->y)
 	{
 		get_next_line(0, str);
-		dprintf(fd, "%s\n", *str);
 		e->tab[y] = (char*)malloc(sizeof(char) * (e->x + 1));
 		x = -1;
 		while (++x < e->x)
