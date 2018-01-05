@@ -6,7 +6,7 @@
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/30 16:45:11 by thou              #+#    #+#             */
-/*   Updated: 2018/01/03 17:41:38 by thou             ###   ########.fr       */
+/*   Updated: 2018/01/05 17:14:05 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	ft_rempli(t_env *e)
 	}
 }
 
-int		ft_countcol(t_env *e)
+int		ft_countcol(t_env *e, char p)
 {
 	int		i;
 	int		j;
@@ -64,13 +64,13 @@ int		ft_countcol(t_env *e)
 		{
 			if (e->tab[j][i] == e->p1)
 			{
-				if (i - 1 > 0 && e->tab[j][i - 1] == e->p2)
+				if (i - 1 > 0 && e->tab[j][i - 1] == p)
 					n++;
-				if (i + 1 < e->x && e->tab[j][i + 1] == e->p2)
+				if (i + 1 < e->x && e->tab[j][i + 1] == p)
 					n++;
-				if (j - 1 > 0 && e->tab[j - 1][i] == e->p2)
+				if (j - 1 > 0 && e->tab[j - 1][i] == p)
 					n++;
-				if (j + 1 < e->y && e->tab[j + 1][i] == e->p2)
+				if (j + 1 < e->y && e->tab[j + 1][i] == p)
 					n++;
 			}
 		}

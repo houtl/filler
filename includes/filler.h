@@ -6,7 +6,7 @@
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/25 01:44:12 by thou              #+#    #+#             */
-/*   Updated: 2018/01/03 17:07:54 by thou             ###   ########.fr       */
+/*   Updated: 2018/01/05 17:12:00 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,17 @@ typedef struct		s_env
 	char			**piece;
 	int				flag;
 	int				flag1;
+	int				flag2;
 	int				*aws;
 	int				as[2];
-	int				maxcol;
+	int				maxcolp1;
+	int				maxcolp2;
 	int				maxdis;
 }					t_env;
 
 void	ft_reset(t_env *e, int x, int y);
 void	ft_rempli(t_env *e);
-int		ft_countcol(t_env *e);
+int		ft_countcol(t_env *e, char p);
 int		ft_countdis(t_env *e);
 int		ft_poser(t_env *e, int x, int y);
 void	free_tab(t_env *e);
