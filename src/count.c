@@ -6,13 +6,11 @@
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/30 16:45:11 by thou              #+#    #+#             */
-/*   Updated: 2018/01/05 17:14:05 by thou             ###   ########.fr       */
+/*   Updated: 2018/01/06 18:18:33 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
-
-extern int fd;
 
 void	ft_reset(t_env *e, int x, int y)
 {
@@ -96,7 +94,8 @@ int		ft_countdis(t_env *e)
 				if (e->x0 < e->x / 2)
 					max = (x + y) > max ? (x + y) : max;
 				else
-					max = ((e->x + e->y) - (x + y)) > max ? ((e->x + e->y) - (x + y)) : max;
+					max = ((e->x + e->y) - (x + y)) > max ?
+						((e->x + e->y) - (x + y)) : max;
 			}
 		}
 	}

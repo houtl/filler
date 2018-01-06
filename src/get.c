@@ -6,13 +6,12 @@
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/25 06:26:11 by thou              #+#    #+#             */
-/*   Updated: 2018/01/03 14:00:07 by thou             ###   ########.fr       */
+/*   Updated: 2018/01/06 18:15:23 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 #include <curses.h>
-extern int	fd;
 
 void	get_piece(t_env *e, char **str)
 {

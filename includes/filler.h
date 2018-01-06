@@ -6,7 +6,7 @@
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/25 01:44:12 by thou              #+#    #+#             */
-/*   Updated: 2018/01/05 17:12:00 by thou             ###   ########.fr       */
+/*   Updated: 2018/01/06 18:23:06 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ typedef struct		s_env
 	int				yp;
 	int				x0;
 	char			**tab;
-	char			**tmp;
 	char			**piece;
 	int				flag;
 	int				flag1;
@@ -37,17 +36,17 @@ typedef struct		s_env
 	int				maxdis;
 }					t_env;
 
-void	ft_reset(t_env *e, int x, int y);
-void	ft_rempli(t_env *e);
-int		ft_countcol(t_env *e, char p);
-int		ft_countdis(t_env *e);
-int		ft_poser(t_env *e, int x, int y);
-void	free_tab(t_env *e);
-void	free_piece(t_env *e);
-void	get_plateau(t_env *e, char **str);
-void	get_player(t_env *e, char **str);
-void	get_piecesize(t_env *e, char **str);
-void	get_tab(t_env *e, char **str);
-void	get_piece(t_env *e, char **str);
+void				ft_reset(t_env *e, int x, int y);
+void				ft_rempli(t_env *e);
+int					ft_countcol(t_env *e, char p);
+int					ft_countdis(t_env *e);
+int					ft_poser(t_env *e, int x, int y);
+void				free_tab(t_env *e);
+void				free_piece(t_env *e);
+void				get_plateau(t_env *e, char **str);
+void				get_player(t_env *e, char **str);
+void				get_piecesize(t_env *e, char **str);
+void				get_tab(t_env *e, char **str);
+void				get_piece(t_env *e, char **str);
 
 #endif
