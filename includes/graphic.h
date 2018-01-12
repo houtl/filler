@@ -6,7 +6,7 @@
 /*   By: thou <thou@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/12 16:50:11 by thou              #+#    #+#             */
-/*   Updated: 2018/01/12 17:04:08 by thou             ###   ########.fr       */
+/*   Updated: 2018/01/12 18:21:30 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,12 @@ typedef struct		s_env
 	char			**piece;
 	int				flag;
 	int				aws[2];
+	void			*mlx;
+	void			*win;
+	void			*img;
+	char			*data;
+	int				sl;
+	int				ed;
 }					t_env;
 
 void				get_player_name(t_env *e, char **str);
