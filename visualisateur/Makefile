@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: thou <marvin@42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2017/12/25 01:41:20 by thou              #+#    #+#              #
-#    Updated: 2017/12/30 16:45:31 by thou             ###   ########.fr        #
+#    Created: 2017/03/16 16:49:12 by thou              #+#    #+#              #
+#    Updated: 2017/04/08 18:15:24 by thou             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,41 +21,46 @@ WHITE					=	\033[37;1m
 RESET					=	\033[0m
 CLEAR					=	\033[H\e[J
 
-NAME	=	thou.filler
-FLAG	=	-Wall -Wextra -Werror
-INC		=	-I includes -I libft/includes
-SRC_DIR	=	src/
-SRC_BASE=	main.c get.c free.c count.c
-SRC		=	$(addprefix $(SRC_DIR), $(SRC_BASE))
-OBJ_DIR	=	obj/
-OBJ		=	$(addprefix $(OBJ_DIR), $(SRC_BASE:.c=.o))
-LIB		=	./libft
-LFT		=	./libft/libft.a
+NAME		=	show
+FLAG		=	-Wall -Werror -Wextra
+FLAGMLX		=	-lmlx -framework OpenGL -framework Appkit
+SRC_DIR		=	src/
+SRC_BASE	=	main.c
+SRC			=	$(addprefix $(SRC_DIR), $(SRC_BASE))
+OBJ_DIR		=	obj/
+LIBFT		=	./libft
+LFT			=	./libft/libft.a
+LIBMLX		=	./minilibx
+LMLX		=	./minilibx/libmlx.a
+INCLUDES	=	-I./includes -I./libft/includes -I./minilibx/
+OBJ			=	$(addprefix $(OBJ_DIR), $(notdir $(SRC:.c=.o)))
 
-all: $(LFT) $(NAME)
+all: $(LFT) $(LMLX) $(NAME)
 
 $(LFT):
-	@make -C $(LIB)
+	@make -C $(LIBFT)
+
+$(LMLX):
+	@make -C $(LIBMLX)
 
 $(NAME): $(OBJ)
-	@gcc $(FLAG) -o $(NAME) $(OBJ) $(INC) -L$(LIB) -lft -lncurses
+	@/usr/bin/gcc $(FLAG) $(OBJ) -o $(NAME) -L$(LIBFT) -lft -L$(LIBMLX) $(FLAGMLX) $(INCLUDES)
 	@echo "\033[48;5;15;38;5;25;1mMAKE $(NAME) DONE$(RESET)"
 
 $(OBJ_DIR)%.o : $(SRC_DIR)%.c
 	@mkdir -p $(OBJ_DIR)
-	@gcc $(FLAG) $(INC) -o $@ -c $<
+	@gcc $(FLAG) -o $@ -c $< $(INCLUDES)
 
 clean:
-	@make clean -C $(LIB)
-	@rm -rf $(OBJ_DIR)
-	@echo "$(YELLOW)Clean	./obj$(GREEN)			[ OK ]$(RESET)"
-
+	@make clean -C $(LIBMLX)
+	@make clean -C $(LIBFT)
+	@rm -rf obj
 
 fclean:
-	@make fclean -C $(LIB)
-	@rm -rf $(OBJ_DIR)
-	@echo "$(YELLOW)Clean	./obj$(GREEN)			[ OK ]$(RESET)"
+	@make fclean -C $(LIBFT)
+	@make clean -C $(LIBMLX)
+	@rm -rf obj
 	@rm -rf $(NAME)
-	@echo "$(YELLOW)Clean	$(NAME)$(GREEN)		[ OK ]$(RESET)"
+	@echo "$(YELLOW)Clean	fdf$(GREEN)			[ OK ]$(RESET)"
 
 re: fclean all

@@ -1,16 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   graphic.c                                          :+:      :+:    :+:   */
+/*   get.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thou <thou@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/12 16:34:49 by thou              #+#    #+#             */
-/*   Updated: 2018/01/12 18:21:13 by thou             ###   ########.fr       */
+/*   Created: 2018/02/21 03:29:05 by thou              #+#    #+#             */
+/*   Updated: 2018/03/27 18:22:55 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "graphic.h"
+
+void	get_plateau(t_env *e, char *str)
+{
+	int		i;
+
+	i = -1;
+	while (ft_isdigit(str[++i] == 0));
+	e->x = ft_atoi(str + i);
+	while (ft_isdigit(str[++i]) == 1);
+	e->y = ft_atoi(str + i);
+	free(str);
+	get_next_line(0, &str);
+	e->flag = 1;
+}
 
 void	get_player_name(t_env *e, char **str)
 {
@@ -27,7 +41,7 @@ void	get_player_name(t_env *e, char **str)
 	tmp[--j] = 0;
 	while (--j >= 0)
 		tmp[j] = str[0][i + j];
-	str[0][10] == 1 ? (p1 = tmp) : (p2 = tmp);
+	str[0][10] == '1' ? (p1 = tmp) : (p2 = tmp);
 }
 
 void	get_put(t_env e, char **str)
@@ -52,43 +66,24 @@ void	get_put(t_env e, char **str)
 			if (e->piece[j][i] = '*')
 				e->tab[e->aws[0] + j][e->aws[1] + i] = c;
 	}
+	e->flag = 3;
 }
 
-void	ft_graphic(t_env *e)
+void	get_tab(t_env *e, char **str)
 {
-	
-}
+	int		i;
+	int		j;
 
-void	init(t_env *e)
-{
-	if (!(e->mlx = mlx_init()))
-		ft_error("mlx_init error");
-	if (!(e->win = mlx_new_window(e->mlx, e->x * 10, e->y * 10 + 10, "FILLER")))
-		ft_error("mlx_new_window error");
-	
-		
-
-int		main(void)
-{
-	char	*line;
-	t_env	e;
-
-	e.flag = 0;
-	while (get_next_line(0, &line))
+	i = -1;
+	tab = (char**)malloc(sizeof(char*) * (e->y + 1))
+	while (++i < e->y)
 	{
-		if (ft_strncmp("$$$ exec p", line, 10) == 0)
-			get_player_name(&e, &line);
-		if (ft_strncmp("Plateau ", line, 8) == 0 && e.flag == 0)
-		{
-			get_plateau(&e, &line);
-			init(&e);
-		}
-		e.flag == 1 ? get_tab(&e, &line) : 0;
-		ft_strncmp("Piece", line, 5) == 0 ? get_piecesize(&e, &line) : 0;
-		e.flag == 2 ? get_piece(&e, &line) : 0;
-		if (ft_strncmp("<got (", line, 6) == 0)
-			get_put(&e, &line);
-		e.flag == 3 ? ft_graphic(&e) : 0;
+		free(*str);
+		get_next_line(0, str);
+		e->tab[i] = (char*)malloc(sizeof(char) * (e->x + 1));
+		j = -1;
+		while (++j < e->x)
+			e->tab[i][j] = str[j + 5];
 	}
-	return (0);
+	ft_graphic(e);
 }
