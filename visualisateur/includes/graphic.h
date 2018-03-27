@@ -57,4 +57,11 @@ void				get_piece(t_env *e, char **str);
 
 void				free_piece(t_env *e);
 
+/*
+** mlx.c
+*/
+
+void				init_mlx(t_env *e);
+void				ft_graphic(t_env *e);
+
 #endif

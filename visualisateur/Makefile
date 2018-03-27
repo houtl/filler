@@ -44,7 +44,7 @@ $(LMLX):
 	@make -C $(LIBMLX)
 
 $(NAME): $(OBJ)
-	@/usr/bin/gcc $(FLAG) $(OBJ) -o $(NAME) -L$(LIBFT) -lft -L$(LIBMLX) $(FLAGMLX) $(INCLUDES)
+	@gcc $(FLAG) $(OBJ) -o $(NAME) -L$(LIBFT) -lft -L$(LIBMLX) $(FLAGMLX) $(INCLUDES)
 	@echo "\033[48;5;15;38;5;25;1mMAKE $(NAME) DONE$(RESET)"
 
 $(OBJ_DIR)%.o : $(SRC_DIR)%.c
