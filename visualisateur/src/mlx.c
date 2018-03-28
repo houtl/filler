@@ -6,7 +6,7 @@
 /*   By: thou <thou@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/27 18:23:03 by thou              #+#    #+#             */
-/*   Updated: 2018/03/28 01:54:24 by thou             ###   ########.fr       */
+/*   Updated: 2018/03/28 03:21:24 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_put_pixel_to_image(t_env *e, int y, int x, int color)
 {
-	if (x >= 0 && x < e->x && y >= 0 && y < e->y)
+	if (x >= 0 && x < (e->x * 10) && y >= 0 && y < (e->y * 10))
 		*(unsigned int*)(e->data + (x * (e->bpp)) + (y * e->sl)) = color;
 }
 
@@ -53,6 +53,7 @@ void	ft_graphic(t_env *e)
 			ft_put_color(e, i, j, color);
 		}
 	}
+	sleep(1);
 	mlx_put_image_to_window(e->mlx, e->win, e->img, 0, 0);
 	e->flag = 1;
 }
@@ -63,7 +64,7 @@ void	init_mlx(t_env *e)
 		ft_error("mlx_init error");
 	if (!(e->win = mlx_new_window(e->mlx, e->x * 10, e->y * 10 + 10, "FILLER")))
 		ft_error("mlx_new_window error");
-	e->img = mlx_new_image(e->mlx, e->x, e->y);
+	e->img = mlx_new_image(e->mlx, e->x * 10, e->y * 10);
 	e->data = mlx_get_data_addr(e->img, &e->bpp, &e->sl, &e->ed);
 	if (e->data == NULL)
 		ft_error("GET_DATA ERROR");

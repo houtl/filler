@@ -6,7 +6,7 @@
 /*   By: thou <thou@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/12 16:34:49 by thou              #+#    #+#             */
-/*   Updated: 2018/03/28 02:03:57 by thou             ###   ########.fr       */
+/*   Updated: 2018/03/28 03:10:52 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,10 @@ int		main(void)
 {
 	char	*line;
 	t_env	e;
-	int		i;
 
 	e.flag = 0;
 	e.piece = NULL;
 	e.tab = NULL;
-	i = 0;
 	while (get_next_line(0, &line))
 	{
 		if (ft_strncmp("$$$ exec p", line, 10) == 0)
@@ -44,11 +42,8 @@ int		main(void)
 			get_put(&e, &line);
 		e.flag == 3 ? ft_graphic(&e) : 0;
 		if (ft_strncmp("==", line, 2) == 0)
-			while (1);
-		ft_putnbr(e.flag);
-		ft_putendl(line);
+			mlx_loop(e.mlx);
 		free(line);
-		i++;
 	}
 	return (0);
 }

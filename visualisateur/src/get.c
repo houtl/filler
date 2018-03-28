@@ -6,7 +6,7 @@
 /*   By: thou <thou@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 03:29:05 by thou              #+#    #+#             */
-/*   Updated: 2018/03/28 02:03:31 by thou             ###   ########.fr       */
+/*   Updated: 2018/03/28 03:02:30 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,6 @@ void	get_tab(t_env *e, char **str)
 	e->tab = (char**)malloc(sizeof(char*) * (e->y + 1));
 	while (++i < e->y)
 	{
-		ft_putnbr(i);
-		ft_putendl("aaaaaaaaaaaaa");
 		free(*str);
 		get_next_line(0, str);
 		e->tab[i] = (char*)malloc(sizeof(char) * (e->x + 1));
@@ -91,7 +89,6 @@ void	get_tab(t_env *e, char **str)
 		while (++j < e->x)
 			e->tab[i][j] = str[0][j + 5];
 		e->tab[i][j] = 0;
-		ft_putendl(*str);
 	}
 	e->tab[i] = NULL;
 	free(*str);
