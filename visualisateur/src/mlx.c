@@ -6,11 +6,17 @@
 /*   By: thou <thou@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/27 18:23:03 by thou              #+#    #+#             */
-/*   Updated: 2018/03/27 18:42:31 by thou             ###   ########.fr       */
+/*   Updated: 2018/03/28 01:54:24 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "graphic.h"
+
+void	ft_put_pixel_to_image(t_env *e, int y, int x, int color)
+{
+	if (x >= 0 && x < e->x && y >= 0 && y < e->y)
+		*(unsigned int*)(e->data + (x * (e->bpp)) + (y * e->sl)) = color;
+}
 
 void	ft_put_color(t_env *e, int y, int x, int color)
 {
@@ -35,25 +41,20 @@ void	ft_graphic(t_env *e)
 	i = -1;
 	while (++i < e->y)
 	{
-		j == -1;
+		j = -1;
 		while(++j < e->x)
 		{
-			if (tab[i][j] == 'O')
+			if (e->tab[i][j] == 'O')
 				color = RED;
-			else if (tab[i][j] == 'X')
-				color = BLEU;
+			else if (e->tab[i][j] == 'X')
+				color = BLUE;
 			else
-				color = WITHE;
+				color = WHITE;
 			ft_put_color(e, i, j, color);
 		}
 	}
+	mlx_put_image_to_window(e->mlx, e->win, e->img, 0, 0);
 	e->flag = 1;
-}
-
-void	ft_put_pixel_to_image(t_env *e, int y, int x, int color)
-{
-	if (x >= 0 && x < e->x && y >= 0 && y < e->y)
-		*(unsigned int*)(e->data + (x * (e->bpp)) + (y * e->sl)) = color;
 }
 
 void	init_mlx(t_env *e)

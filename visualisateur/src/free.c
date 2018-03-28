@@ -6,13 +6,13 @@
 /*   By: thou <thou@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/27 17:57:35 by thou              #+#    #+#             */
-/*   Updated: 2018/03/27 17:59:27 by thou             ###   ########.fr       */
+/*   Updated: 2018/03/28 02:00:10 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "graphic.c"
+#include "graphic.h"
 
-int		free_piece(t_env *e)
+void		free_piece(t_env *e)
 {
 	int i;
 
@@ -20,4 +20,14 @@ int		free_piece(t_env *e)
 	while (++i < e->yp)
 		free(e->piece[i]);
 	free(e->piece);
+}
+
+void		free_tab(t_env *e)
+{
+	int	i;
+
+	i = -1;
+	while (++i < e->y)
+		free(e->tab[i]);
+	free(e->tab);
 }

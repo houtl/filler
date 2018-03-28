@@ -6,23 +6,23 @@
 /*   By: thou <thou@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 03:29:05 by thou              #+#    #+#             */
-/*   Updated: 2018/03/27 18:22:55 by thou             ###   ########.fr       */
+/*   Updated: 2018/03/28 02:03:31 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "graphic.h"
 
-void	get_plateau(t_env *e, char *str)
+void	get_plateau(t_env *e, char **str)
 {
 	int		i;
 
 	i = -1;
-	while (ft_isdigit(str[++i] == 0));
-	e->x = ft_atoi(str + i);
-	while (ft_isdigit(str[++i]) == 1);
-	e->y = ft_atoi(str + i);
-	free(str);
-	get_next_line(0, &str);
+	while (ft_isdigit(str[0][++i]) == 0);
+	e->y = ft_atoi(str[0] + i);
+	while (ft_isdigit(str[0][++i]) == 1);
+	e->x = ft_atoi(str[0] + i);
+	free(*str);
+	get_next_line(0, str);
 	e->flag = 1;
 }
 
@@ -41,10 +41,10 @@ void	get_player_name(t_env *e, char **str)
 	tmp[--j] = 0;
 	while (--j >= 0)
 		tmp[j] = str[0][i + j];
-	str[0][10] == '1' ? (p1 = tmp) : (p2 = tmp);
+	str[0][10] == '1' ? (e->p1 = tmp) : (e->p2 = tmp);
 }
 
-void	get_put(t_env e, char **str)
+void	get_put(t_env *e, char **str)
 {
 	char	c;
 	int		i;
@@ -53,9 +53,9 @@ void	get_put(t_env e, char **str)
 	i = 11;
 	c = str[0][6];
 	e->aws[0] = ft_atoi(str[0] + 11);
-	while (ft_isnb(str[0][i]))
+	while (ft_isdigit(str[0][i]))
 		i++;
-	while (!ft_isnb(str[0][i]))
+	while (!ft_isdigit(str[0][i]))
 		i++;
 	e->aws[1] = ft_atoi(str[0] + i);
 	j = 0;
@@ -63,9 +63,11 @@ void	get_put(t_env e, char **str)
 	{
 		i = 0;
 		while (++i < e->xp)
-			if (e->piece[j][i] = '*')
+			if (e->piece[j][i] == '*')
 				e->tab[e->aws[0] + j][e->aws[1] + i] = c;
 	}
+	free(*str);
+	get_next_line(0, str);
 	e->flag = 3;
 }
 
@@ -75,15 +77,23 @@ void	get_tab(t_env *e, char **str)
 	int		j;
 
 	i = -1;
-	tab = (char**)malloc(sizeof(char*) * (e->y + 1))
+	if (e->tab != NULL)
+		free_tab(e);
+	e->tab = (char**)malloc(sizeof(char*) * (e->y + 1));
 	while (++i < e->y)
 	{
+		ft_putnbr(i);
+		ft_putendl("aaaaaaaaaaaaa");
 		free(*str);
 		get_next_line(0, str);
 		e->tab[i] = (char*)malloc(sizeof(char) * (e->x + 1));
 		j = -1;
 		while (++j < e->x)
-			e->tab[i][j] = str[j + 5];
+			e->tab[i][j] = str[0][j + 5];
+		e->tab[i][j] = 0;
+		ft_putendl(*str);
 	}
-	ft_graphic(e);
+	e->tab[i] = NULL;
+	free(*str);
+	get_next_line(0, str);
 }

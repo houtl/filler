@@ -6,18 +6,28 @@
 /*   By: thou <thou@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/12 16:34:49 by thou              #+#    #+#             */
-/*   Updated: 2018/03/27 20:25:03 by                  ###   ########.fr       */
+/*   Updated: 2018/03/28 02:03:57 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "graphic.h"
 
+void	ft_error(char *str)
+{
+	ft_putstr(str);
+	exit(0);
+}
+
 int		main(void)
 {
 	char	*line;
 	t_env	e;
+	int		i;
 
 	e.flag = 0;
+	e.piece = NULL;
+	e.tab = NULL;
+	i = 0;
 	while (get_next_line(0, &line))
 	{
 		if (ft_strncmp("$$$ exec p", line, 10) == 0)
@@ -33,7 +43,12 @@ int		main(void)
 		if (ft_strncmp("<got (", line, 6) == 0)
 			get_put(&e, &line);
 		e.flag == 3 ? ft_graphic(&e) : 0;
+		if (ft_strncmp("==", line, 2) == 0)
+			while (1);
+		ft_putnbr(e.flag);
+		ft_putendl(line);
 		free(line);
+		i++;
 	}
 	return (0);
 }
