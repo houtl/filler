@@ -6,44 +6,33 @@
 /*   By: thou <thou@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/12 16:34:49 by thou              #+#    #+#             */
-/*   Updated: 2018/03/28 03:10:52 by thou             ###   ########.fr       */
+/*   Updated: 2018/08/06 10:39:37 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "graphic.h"
 
-void	ft_error(char *str)
+
+
+void	ft_init(t_env *e)
 {
-	ft_putstr(str);
-	exit(0);
+	e->mlx = mlx_init();
+	e->win = mlx_new_window(p->mlx, WIDTH, HEIGHT, "FILLER");
+	e->img = mlx_new_image(p->mlx, WIDTH, HEIGHT);
+	e->pause = 0;
+	e->tab = NULL;
 }
 
 int		main(void)
 {
-	char	*line;
 	t_env	e;
-
-	e.flag = 0;
-	e.piece = NULL;
-	e.tab = NULL;
-	while (get_next_line(0, &line))
-	{
-		if (ft_strncmp("$$$ exec p", line, 10) == 0)
-			get_player_name(&e, &line);
-		if (ft_strncmp("Plateau ", line, 8) == 0 && e.flag == 0)
-		{
-			get_plateau(&e, &line);
-			init_mlx(&e);
-		}
-		e.flag == 1 ? get_tab(&e, &line) : 0;
-		ft_strncmp("Piece", line, 5) == 0 ? get_piecesize(&e, &line) : 0;
-		e.flag == 2 ? get_piece(&e, &line) : 0;
-		if (ft_strncmp("<got (", line, 6) == 0)
-			get_put(&e, &line);
-		e.flag == 3 ? ft_graphic(&e) : 0;
-		if (ft_strncmp("==", line, 2) == 0)
-			mlx_loop(e.mlx);
-		free(line);
-	}
+	ft_init(&e);
+	ft_draw_title(&e);
+	mlx_hook(e.win, 2, 2, ft_key, &e);
+	mlx_mouse_hook(e.win, ft_mouse, &e);
+	ft_loop_key(&e);
+	mlx_loop_hook(e.mlx, ft_loop_key, &e);
+	free(e.tab);
+	mlx_loop(e.mlx);
 	return (0);
 }

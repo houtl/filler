@@ -1,33 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thou <thou@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/27 17:57:35 by thou              #+#    #+#             */
-/*   Updated: 2018/03/28 02:00:10 by thou             ###   ########.fr       */
+/*   Created: 2018/08/05 21:58:09 by thou              #+#    #+#             */
+/*   Updated: 2018/08/06 10:39:48 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "graphic.h"
+#include "filler.h"
 
-void		free_piece(t_env *e)
+void	ft_draw_title(t_env *e)
 {
-	int i;
+	int		w;
+	int		h;
 
-	i = -1;
-	while (++i < e->yp)
-		free(e->piece[i]);
-	free(e->piece);
+	e->img = mlx_xpm_file_to_image(e->mlx, "title.xpm", &n, &r);
+	e->data = mlx_get_data_addr(e->img, &e->bpp, &e->sl, &e->ed);
 }
 
-void		free_tab(t_env *e)
+void	ft_loop_key(t_env *e)
 {
-	int	i;
-
-	i = -1;
-	while (++i < e->y)
-		free(e->tab[i]);
-	free(e->tab);
-}
+	
