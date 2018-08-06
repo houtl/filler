@@ -17,13 +17,6 @@
 
 typedef struct		s_env
 {
-	int				pause;
-	int				img;
-	int				data;
-	int				bpp;
-	int				sl;
-	int				ed;
-
 	char			p1;
 	char			p2;
 	int				x;

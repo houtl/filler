@@ -31,6 +31,17 @@
 
 typedef struct		s_env
 {
+	int				pause;
+	void			*mlx;
+	void			*win;
+	void			*img;
+	void			*img;
+	char			*data;
+	int				bpp;
+	int				sl;
+	int				ed;
+
+
 	char			*p1;
 	char			*p2;
 	int				x;
@@ -41,13 +52,6 @@ typedef struct		s_env
 	char			**piece;
 	int				flag;
 	int				aws[2];
-	void			*mlx;
-	void			*win;
-	void			*img;
-	char			*data;
-	int				bpp;
-	int				sl;
-	int				ed;
 }					t_env;
 
 /*
