@@ -6,15 +6,17 @@
 /*   By: thou <thou@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 01:07:53 by thou              #+#    #+#             */
-/*   Updated: 2018/08/07 02:31:34 by thou             ###   ########.fr       */
+/*   Updated: 2018/08/07 16:40:34 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "graphic.h"
 
-int		ft_key(t_env *e)
+int		ft_key(int key, t_env *e)
 {
-	e->test = 0;
+	if (key == KEY_ESC)
+		exit(1);
+	ft_loop_key(e);
 	return (0);
 }
 

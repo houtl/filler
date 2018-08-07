@@ -15,6 +15,7 @@
 
 # include "libft.h"
 # include "mlx.h"
+# include "key.h"
 
 # define WHITE		0xFFFFFF
 # define BLUE		0x0901F7
@@ -89,7 +90,7 @@ void				ft_resault(t_env *e);
 ** key.c
 */
 
-int					ft_key(t_env *e);
+int					ft_key(int key, t_env *e);
 int					ft_mouse(int key, int x, int y, t_env *e);
 
 #endif
