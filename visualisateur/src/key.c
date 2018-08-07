@@ -1,38 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   key.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thou <thou@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/12 16:34:49 by thou              #+#    #+#             */
-/*   Updated: 2018/08/07 01:31:38 by thou             ###   ########.fr       */
+/*   Created: 2018/08/07 01:07:53 by thou              #+#    #+#             */
+/*   Updated: 2018/08/07 02:31:34 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "graphic.h"
 
-
-
-void	ft_init(t_env *e)
+int		ft_key(t_env *e)
 {
-	e->mlx = mlx_init();
-	e->win = mlx_new_window(e->mlx, WIDTH, HEIGHT, "FILLER");
-	e->img = mlx_new_image(e->mlx, WIDTH, HEIGHT);
-	e->pause = 0;
-	e->tab = NULL;
+	e->test = 0;
+	return (0);
 }
 
-int		main(void)
+int		ft_mouse(int key, int x, int y, t_env *e)
 {
-	t_env	e;
-	ft_init(&e);
-	ft_draw_title(&e);
-	mlx_hook(e.win, 2, 2, ft_key, &e);
-	mlx_mouse_hook(e.win, ft_mouse, &e);
-	ft_loop_key(&e);
-	mlx_loop_hook(e.mlx, ft_loop_key, &e);
-	free(e.tab);
-	mlx_loop(e.mlx);
+	if (key == 1)
+	{
+		if (e->pause == 0)
+			e->pause = 1;
+		else if (e->pause == 1)
+			e->pause = 0;
+	}
+	ft_loop_key(e);
 	return (0);
+	x=0;
+	y=0;
 }

@@ -6,32 +6,43 @@
 /*   By: thou <>                                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/06 15:33:12 by thou              #+#    #+#             */
-/*   Updated: 2018/08/06 18:03:14 by thou             ###   ########.fr       */
+/*   Updated: 2018/08/07 02:21:55 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "graphic.h"
-static void	get_plateau(char *str, t_env *e)
+static void	get_plateau(t_env *e, char *str)
 {
 	int		i;
 
 	i = 8;
+	ft_putendl(str);
 	e->y = ft_atoi(str + i);
 	while (str[++i] != ' ')
 		;
 	e->x = ft_atoi(str + i);
-	free(line);
+	free(str);
 	e->tab = (char**)malloc(sizeof(char*) * (e->y + 1));
 }
-static void	get_tab(char *str, t_env *e)
+static void	get_tab(t_env *e, char *str)
 {
-	get_plateau(str, e);
 	int		y;
-	int		x;
 
-	
+	get_plateau(e, str);
+	get_next_line(0, &str);
+	ft_putendl(str);
+	free(str);
+	y = -1;
+	while (++y < e->y)
+	{
+		get_next_line(0, &str);
+		ft_putendl(str);
+		e->tab[y] = ft_strdup(str + 4);
+		ft_strdel(&str);
+	}
+}
 
-static void	get_player(char *str, t_env *e)
+static void	get_player(t_env *e, char *str)
 {
 	int		i;
 
@@ -42,13 +53,13 @@ static void	get_player(char *str, t_env *e)
 			i++;
 		e->p1 = ft_strsub(str, 23, i - 23);
 	}
-	if (str[9] === 'p' && str[10] == '2')
+	if (str[9] == 'p' && str[10] == '2')
 	{
 		while (str[i] != '.')
 			i++;
 		e->p2 = ft_strsub(str, 23, i - 23);
 	}
-	free(&str);
+	free(str);
 }
 
 void	ft_read(t_env *e)
@@ -59,14 +70,18 @@ void	ft_read(t_env *e)
 	i = 0;
 	while (get_next_line(0, &line) == 1)
 	{
+		ft_putendl(line);
 		if (ft_strncmp(line, "$$$", 2) == 0)
-			get_player(line, e);
-		if (ft_strncmp(line, "Plateau", 6) == 0)
-			get_tab(line, e);
-		if (ft_strncmp(line, "Piece", 4) == 0)
+			get_player(e, line);
+		else if (ft_strncmp(line, "Plateau", 6) == 0)
+			get_tab(e, line);
+		else if (ft_strncmp(line, "Piece", 4) == 0)
 		{
+			ft_putendl(line);
 			ft_strdel(&line);
 			return ;
 		}
+		else
+			free(line);
 	}
 }

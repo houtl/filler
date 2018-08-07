@@ -28,6 +28,8 @@
 # define ORANGE		0xF78C01
 # define RED		0xFE4D01
 # define BACKGROUND	0x4C1B1B
+# define WIDTH		1200
+# define HEIGHT		600
 
 typedef struct		s_env
 {
@@ -35,12 +37,12 @@ typedef struct		s_env
 	void			*mlx;
 	void			*win;
 	void			*img;
-	void			*img;
+	void			*img2;
 	char			*data;
 	int				bpp;
 	int				sl;
 	int				ed;
-
+	int				test;
 
 	char			*p1;
 	char			*p2;
@@ -58,36 +60,36 @@ typedef struct		s_env
 ** main.c
 */
 
-void				ft_error(char *str);
 
 /*
-** get.c
+** ft_read.c
 */
 
-void				get_player_name(t_env *e, char **str);
-void				get_plateau(t_env *e, char **str);
-void				get_tab(t_env *e, char **str);
-void				get_put(t_env *e, char **str);
+void				ft_read(t_env *e);
 
 /*
-** get1.c
+** draw.c
 */
 
-void				get_piecesize(t_env *e, char **str);
-void				get_piece(t_env *e, char **str);
+void				ft_draw_title(t_env *e);
+void				ft_draw(t_env *e);
+int					ft_loop_key(t_env *e);
 
 /*
-** free.c
+** draw2.c
 */
 
-void				free_piece(t_env *e);
-void				free_tab(t_env *e);
+void				ft_background(t_env *e);
+void				ft_menu(t_env *e);
+void				ft_score(t_env *e);
+void				ft_map(t_env *e);
+void				ft_resault(t_env *e);
 
 /*
-** mlx.c
+** key.c
 */
 
-void				init_mlx(t_env *e);
-void				ft_graphic(t_env *e);
+int					ft_key(t_env *e);
+int					ft_mouse(int key, int x, int y, t_env *e);
 
 #endif
