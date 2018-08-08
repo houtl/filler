@@ -6,7 +6,7 @@
 /*   By: thou <thou@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/12 16:34:49 by thou              #+#    #+#             */
-/*   Updated: 2018/08/07 01:31:38 by thou             ###   ########.fr       */
+/*   Updated: 2018/08/07 19:44:56 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	ft_init(t_env *e)
 	e->img = mlx_new_image(e->mlx, WIDTH, HEIGHT);
 	e->pause = 0;
 	e->tab = NULL;
+	e->x = 0;
+	e->y = 0;
 }
 
 int		main(void)

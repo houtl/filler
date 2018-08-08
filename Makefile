@@ -47,12 +47,14 @@ $(OBJ_DIR)%.o : $(SRC_DIR)%.c
 
 clean:
 	@make clean -C $(LIB)
+	@make clean -C ./visualisateur
 	@rm -rf $(OBJ_DIR)
 	@echo "$(YELLOW)Clean	./obj$(GREEN)			[ OK ]$(RESET)"
 
 
 fclean:
 	@make fclean -C $(LIB)
+	@make fclean -C ./visualisateur
 	@rm -rf $(OBJ_DIR)
 	@echo "$(YELLOW)Clean	./obj$(GREEN)			[ OK ]$(RESET)"
 	@rm -rf $(NAME)

@@ -40,6 +40,7 @@ typedef struct		s_env
 	void			*img;
 	void			*img2;
 	char			*data;
+	char			*data2;
 	int				bpp;
 	int				sl;
 	int				ed;

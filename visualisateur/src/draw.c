@@ -6,7 +6,7 @@
 /*   By: thou <thou@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/05 21:58:09 by thou              #+#    #+#             */
-/*   Updated: 2018/08/07 02:14:20 by thou             ###   ########.fr       */
+/*   Updated: 2018/08/07 21:00:40 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_draw_title(t_env *e)
 	int		h;
 
 	e->img2 = mlx_xpm_file_to_image(e->mlx, "title.xpm", &w, &h);
-	e->data = mlx_get_data_addr(e->img2, &e->bpp, &e->sl, &e->ed);
+	e->data2 = mlx_get_data_addr(e->img, &e->bpp, &e->sl, &e->ed);
 }
 
 void	ft_draw(t_env *e)
@@ -38,7 +38,7 @@ int		ft_loop_key(t_env *e)
 		e->data = mlx_get_data_addr(e->img, &e->bpp, &e->sl, &e->ed);
 		ft_read(e);
 		ft_draw(e);
-//		mlx_put_image_to_window(e->mlx, e->win, e->img, 0, 0);
+		mlx_put_image_to_window(e->mlx, e->win, e->img, 0, 0);
 		mlx_put_image_to_window(e->mlx, e->win, e->img2, 0, 0);
 		mlx_destroy_image(e->mlx, e->img);
 		e->img = mlx_new_image(e->mlx, WIDTH, HEIGHT);

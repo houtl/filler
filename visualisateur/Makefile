@@ -61,6 +61,6 @@ fclean:
 	@make clean -C $(LIBMLX)
 	@rm -rf obj
 	@rm -rf $(NAME)
-	@echo "$(YELLOW)Clean	fdf$(GREEN)			[ OK ]$(RESET)"
+	@echo "$(YELLOW)Clean	$(NAME)$(GREEN)			[ OK ]$(RESET)"
 
 re: fclean all
