@@ -6,7 +6,7 @@
 /*   By: thou <thou@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/12 16:34:49 by thou              #+#    #+#             */
-/*   Updated: 2018/08/07 19:44:56 by thou             ###   ########.fr       */
+/*   Updated: 2018/08/09 02:07:21 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	ft_init(t_env *e)
 	e->mlx = mlx_init();
 	e->win = mlx_new_window(e->mlx, WIDTH, HEIGHT, "FILLER");
 	e->img = mlx_new_image(e->mlx, WIDTH, HEIGHT);
+	e->img2 = mlx_xpm_file_to_image(e->mlx, "title.xpm", &e->x, &e->y);
 	e->pause = 0;
 	e->tab = NULL;
 	e->x = 0;
@@ -28,8 +29,8 @@ void	ft_init(t_env *e)
 int		main(void)
 {
 	t_env	e;
+
 	ft_init(&e);
-	ft_draw_title(&e);
 	mlx_hook(e.win, 2, 2, ft_key, &e);
 	mlx_mouse_hook(e.win, ft_mouse, &e);
 	ft_loop_key(&e);

@@ -6,7 +6,7 @@
 /*   By: thou <thou@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/06 23:26:58 by thou              #+#    #+#             */
-/*   Updated: 2018/08/07 18:00:26 by thou             ###   ########.fr       */
+/*   Updated: 2018/08/09 10:39:12 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,9 @@ void	ft_background(t_env *e)
 {
 	int		i;
 
-	i = 1;
-	while (i < HEIGHT * WIDTH)
-	{
-		*(unsigned int*)(e->data + i) = 0x343434;
-		i += 4;
-	}
+	i = -1;
+	while (++i < HEIGHT * WIDTH)
+		*(unsigned int*)(e->data + i * 4) = 0x343434;
 }
 
 void	ft_menu(t_env *e)

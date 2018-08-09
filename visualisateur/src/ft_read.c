@@ -6,7 +6,7 @@
 /*   By: thou <>                                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/06 15:33:12 by thou              #+#    #+#             */
-/*   Updated: 2018/08/07 02:21:55 by thou             ###   ########.fr       */
+/*   Updated: 2018/08/09 02:03:08 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ static void	get_plateau(t_env *e, char *str)
 	int		i;
 
 	i = 8;
-	ft_putendl(str);
 	e->y = ft_atoi(str + i);
 	while (str[++i] != ' ')
 		;
@@ -30,13 +29,11 @@ static void	get_tab(t_env *e, char *str)
 
 	get_plateau(e, str);
 	get_next_line(0, &str);
-	ft_putendl(str);
 	free(str);
 	y = -1;
 	while (++y < e->y)
 	{
 		get_next_line(0, &str);
-		ft_putendl(str);
 		e->tab[y] = ft_strdup(str + 4);
 		ft_strdel(&str);
 	}
@@ -70,14 +67,12 @@ void	ft_read(t_env *e)
 	i = 0;
 	while (get_next_line(0, &line) == 1)
 	{
-		ft_putendl(line);
 		if (ft_strncmp(line, "$$$", 2) == 0)
 			get_player(e, line);
 		else if (ft_strncmp(line, "Plateau", 6) == 0)
 			get_tab(e, line);
 		else if (ft_strncmp(line, "Piece", 4) == 0)
 		{
-			ft_putendl(line);
 			ft_strdel(&line);
 			return ;
 		}

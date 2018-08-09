@@ -73,7 +73,6 @@ void				ft_read(t_env *e);
 ** draw.c
 */
 
-void				ft_draw_title(t_env *e);
 void				ft_draw(t_env *e);
 int					ft_loop_key(t_env *e);
 
