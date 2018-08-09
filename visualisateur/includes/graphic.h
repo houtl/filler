@@ -45,17 +45,13 @@ typedef struct		s_env
 	int				sl;
 	int				ed;
 	int				test;
-
 	char			*p1;
 	char			*p2;
 	int				x;
 	int				y;
-	int				xp;
-	int				yp;
 	char			**tab;
-	char			**piece;
-	int				flag;
 	int				aws[2];
+	int				color;
 }					t_env;
 
 /*
