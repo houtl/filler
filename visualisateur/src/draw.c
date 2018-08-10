@@ -6,7 +6,7 @@
 /*   By: thou <thou@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/05 21:58:09 by thou              #+#    #+#             */
-/*   Updated: 2018/08/09 17:49:18 by thou             ###   ########.fr       */
+/*   Updated: 2018/08/10 02:16:38 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,12 @@ void	ft_background(t_env *e)
 
 void	ft_resault(t_env *e)
 {
-	e->test = 1;
+	mlx_string_put(e->mlx, e->win, 130, 115, BLUE, e->p1);
+	mlx_string_put(e->mlx, e->win, 420, 115, RED, e->p2);
+	mlx_string_put(e->mlx, e->win, 135, 130, BLUE, ft_itoa(e->aws[0]));
+	mlx_string_put(e->mlx, e->win, 425, 130, RED, ft_itoa(e->aws[1]));
 }
+
 void	ft_draw_grille(int x, int y, t_env *e)
 {
 	int		w;
@@ -32,13 +36,13 @@ void	ft_draw_grille(int x, int y, t_env *e)
 	int		j;
 
 	w = e->y > e->x ? 600 / e->y : 600 / e->x;
-	j = -1;
+	j = 1;
 	while (++j < w)
 	{
-		i = -1;
+		i = 1;
 		while (++i < w)
 		{
-			*(unsigned int*)(e->data + (y + j) * 4 * w *WIDTH + (x + i) * 4 * w) = e->color;
+			*(unsigned int*)(e->data + (y * w + j + 200) * 4 * WIDTH + x * w * 4 + i * 4) = e->color;
 		}
 	}
 }
@@ -53,13 +57,10 @@ void	ft_draw_map(t_env *e)
 	i = -1;
 	while (++i < e->y)
 	{
-		ft_putchar(e->tab[0][0]);
 		j = -1;
 		while (++j < e->x)
 		{
-			ft_putendl(e->tab[1]);
-			ft_putchar(e->tab[i][j]);
-			ft_putchar(e->tab[0][0]);
+			e->color = WHITE;
 			if (e->tab[i][j] == 'o' || e->tab[i][j] == 'O')
 			{
 				e->aws[0]++;
@@ -70,8 +71,6 @@ void	ft_draw_map(t_env *e)
 				e->aws[1]++;
 				e->color = RED;
 			}
-			else
-				e->color = WHITE;
 			ft_draw_grille(j, i, e);
 		}
 	}
@@ -87,6 +86,7 @@ int		ft_loop_key(t_env *e)
 		ft_read(e);
 		ft_background(e);
 		ft_draw_map(e);
+		ft_bar(e);
 		mlx_put_image_to_window(e->mlx, e->win, e->img, 0, 0);
 		mlx_put_image_to_window(e->mlx, e->win, e->img2, 0, 0);
 		mlx_destroy_image(e->mlx, e->img);

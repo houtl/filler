@@ -29,8 +29,8 @@
 # define ORANGE		0xF78C01
 # define RED		0xFE4D01
 # define BACKGROUND	0x4C1B1B
-# define WIDTH		1200
-# define HEIGHT		600
+# define WIDTH		600
+# define HEIGHT		800
 
 typedef struct		s_env
 {
@@ -57,7 +57,7 @@ typedef struct		s_env
 /*
 ** main.c
 */
-
+void				ft_bar(t_env *e);
 
 /*
 ** ft_read.c
